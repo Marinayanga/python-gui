@@ -7,7 +7,6 @@ class GroupHelper:
         tree = self.group_editor.window(auto_id = "uxAddressTreeView")
         root = tree.tree_root()
         group_list = [node.text() for node in root.children()]
-        pass
         self.close_group_editor()
         return group_list
 
@@ -15,7 +14,7 @@ class GroupHelper:
     def add_new_group(self, name):
         self.open_group_editor()
         self.group_editor.window (auto_id = "uxNewAddressButton").click()
-        input = self.group_editor.window(class_editor = "Edit")
+        input = self.group_editor.window(class_name = "Edit")
         input.set_text(name)
         input.type_keys("\n")
         pass
@@ -26,6 +25,15 @@ class GroupHelper:
         self.group_editor = self.app.application.window(title = 'Group editor')
         self.group_editor.wait('visible')
 
+
+    def delete_group(self, name):
+        self.open_group_editor
+        self.group_editor.window(value = "%s" % name).click()
+        self.group_editor.window(auto_id = "uxDeleteAddressButton").click()
+        self.group_delete = self.app.application.window(title='Delete group')
+        self.group_delete.wait('visible')
+        self.group_delete.window(auto_id = "uxDeleteAllRadioButton").click()
+        self.group_delete.window(auto_id = "uxOKAddressButton").click()
 
 
 
