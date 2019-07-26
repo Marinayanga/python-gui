@@ -1,10 +1,11 @@
+from random import randrange
+
 
 def test_delete_group(app):
-
     if len (app.group.get_group_list()) == 0:
-        app.group.add_new_group("my group")
+         app.group.add_new_group("my group")
     old_list = app.group.get_group_list()
-    app.group.delete_group("New_group")
+    index = randrange(len(old_list))
+    app.group.delete_group(index)
     new_list = app.group.get_group_list()
-    old_list.remove("my group")
-    assert sorted(old_list) == sorted(new_list)
+    assert len(old_list)-1 == len(new_list)
